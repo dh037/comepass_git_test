@@ -12,6 +12,7 @@ class MainHomeNotifier extends ChangeNotifier {
   List<Ticket> ticketList = [];
 
   ticketBanner(value) {
+    print(value);
     ticketBannerDotIndicatorIndex = value;
     notifyListeners();
   }

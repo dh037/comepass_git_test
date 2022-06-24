@@ -18,6 +18,7 @@ class ColorCode {
 
 
   static const Color greyBorder = Color(0xffE6E9EB);
+  static const Color grey80 = Color(0xff5D616C);
   static const Color grey70 = Color(0xff868991);
   static const Color grey60 = Color(0xffAEB0B5);
   static const Color grey50 = Color(0xffD7D8DA);

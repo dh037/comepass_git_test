@@ -55,6 +55,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   device_info_plus: ^4.0.0
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

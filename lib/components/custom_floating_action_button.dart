@@ -6,13 +6,12 @@ class CustomFloatingActionButton extends StatelessWidget {
   const CustomFloatingActionButton({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 48.w,
       width: 48.w,
+      margin: EdgeInsets.only(top: 8.h),
       child: FloatingActionButton(
-        onPressed: () {
-          print(10);
-        },
+        onPressed: () {},
         child: Container(
           height: 48.w,
           width: 48.w,

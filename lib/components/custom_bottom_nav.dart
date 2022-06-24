@@ -18,7 +18,6 @@ class CustomBottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 52.h + MediaQuery.of(context).padding.bottom,
       decoration: BoxDecoration(
         boxShadow: <BoxShadow>[
           BoxShadow(

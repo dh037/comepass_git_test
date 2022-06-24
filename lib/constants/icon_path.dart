@@ -15,6 +15,7 @@ class IconPath {
   static String iconFilter = "assets/icon/icon_filter.svg";
   static String bottomNavHome = 'assets/icon/bottom_nav_home.svg';
   static String bottomNavHomeDisabled = "assets/icon/bottom_nav_home_disabled.svg";
+  static String iconDelete = "assets/icon/icon_delete.svg";
 
   static String bottomNavShopList = "assets/icon/bottom_nav_shop_list.svg";
   static String bottomNavShopListDisabled = "assets/icon/bottom_nav_shop_list_disabled.svg";

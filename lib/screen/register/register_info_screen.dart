@@ -42,6 +42,7 @@ class _RegisterInfoScreenState extends State<RegisterInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset : false,
       appBar: CustomAppBar.customAppBar(
           createLeadingIcon: true,
           onPressed: () {

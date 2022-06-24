@@ -52,16 +52,10 @@ class _MainScreenState extends State<MainScreen> {
                         builder: (context) => ChangeNotifierProvider(
                             create: (_) => MainHomeNotifier(),
                             child: const MainHomeScreen()))),
-                Navigator(
-                    key: _bottomNavNotifier.shopList,
-                    onGenerateRoute: (routeSetting) => MaterialPageRoute(
-                        builder: (context) => ChangeNotifierProvider(
-                            create: (_) => MainShopListNotifier(),
-                            child: const MainShopListScreen()))),
-                Container(child: Text("2")),
+                const MainShopListScreen(),
                 const SizedBox.shrink(),
-                Container(child: Text("3")),
-                Container(child: Text("4")),
+                Container(child: Center(child: Text("3"))),
+                Container(child: Center(child: Text("4"))),
               ],
             ));
   }

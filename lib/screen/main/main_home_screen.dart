@@ -143,10 +143,19 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                   controller: _homeNotifier.pageController,
                   onPageChanged: _homeNotifier.ticketBanner,
                   itemCount: _homeNotifier.ticketList.length,
+
                   padEnds: false,
                   itemBuilder: (_, index) {
-                    return CustomTicketBanner(
-                        ticket: _homeNotifier.ticketList[index]);
+                    return Row(
+                      children: [
+
+                        if (index == 0 ) SizedBox(width: 16.w),
+                        Expanded(
+                          child: CustomTicketBanner(
+                              ticket: _homeNotifier.ticketList[index]),
+                        ),
+                      ],
+                    );
                   }),
             ),
             SizedBox(height: 20.h),

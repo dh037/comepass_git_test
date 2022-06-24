@@ -1,6 +1,8 @@
+import 'package:comepass/components/custom_search_appbar.dart';
 import 'package:comepass/constants/color_code.dart';
 import 'package:comepass/constants/icon_path.dart';
 import 'package:comepass/constants/image_path.dart';
+import 'package:comepass/screen/main/main_shop_list_search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,6 +15,320 @@ class MainShopListScreen extends StatefulWidget {
 }
 
 class _MainShopListScreenState extends State<MainShopListScreen> {
+  void bottomSheet() {
+    showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        useRootNavigator: true,
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(16),
+                    topLeft: Radius.circular(16))),
+            height: 400.h,
+            padding: EdgeInsets.only(
+                top: 18.h, bottom: 16.w, right: 16.w, left: 16.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: 24.w,
+                      height: 24.w,
+                    ),
+                    Text("검색필터",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w700)),
+                    Container(
+                      width: 24.w,
+                      height: 24.w,
+                      child: IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: SvgPicture.asset(IconPath.iconDelete,
+                              fit: BoxFit.fill)),
+                    )
+                  ],
+                ),
+                SizedBox(height: 31.h),
+                Text('이용여부',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w400,
+                        color: ColorCode.grey80)),
+                SizedBox(height: 4.h),
+                Row(
+                  children: [
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(color: ColorCode.green50)),
+                      child: Text("전체",
+                          style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w700,
+                              color: ColorCode.green50)),
+                    ),
+                    SizedBox(width: 5.w),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: ColorCode.greyBorder, width: 1)),
+                      child: Text("이용중", style: TextStyle(fontSize: 12.sp)),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 24.h),
+                Text('즐겨찾기',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w400,
+                        color: ColorCode.grey80)),
+                SizedBox(height: 4.h),
+                Row(
+                  children: [
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(color: ColorCode.green50)),
+                      child: Text("전체",
+                          style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w700,
+                              color: ColorCode.green50)),
+                    ),
+                    SizedBox(width: 5.w),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: ColorCode.greyBorder, width: 1)),
+                      child:
+                          Text("즐겨찾기한 매장", style: TextStyle(fontSize: 12.sp)),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 24.h),
+                Text('지역',
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w400,
+                        color: ColorCode.grey80)),
+                SizedBox(height: 4.h),
+                Row(
+                  children: [
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(color: ColorCode.green50)),
+                      child: Text("전국",
+                          style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w700,
+                              color: ColorCode.green50)),
+                    ),
+                    SizedBox(width: 5.w),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: ColorCode.greyBorder, width: 1)),
+                      child: Text("서울", style: TextStyle(fontSize: 12.sp)),
+                    ),
+                    SizedBox(width: 5.w),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: ColorCode.greyBorder, width: 1)),
+                      child: Text("대전", style: TextStyle(fontSize: 12.sp)),
+                    ),
+                    SizedBox(width: 5.w),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: ColorCode.greyBorder, width: 1)),
+                      child: Text("대구", style: TextStyle(fontSize: 12.sp)),
+                    ),
+                    SizedBox(width: 5.w),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: ColorCode.greyBorder, width: 1)),
+                      child: Text("부산", style: TextStyle(fontSize: 12.sp)),
+                    ),
+                    SizedBox(width: 5.w),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: ColorCode.greyBorder, width: 1)),
+                      child: Text("울산", style: TextStyle(fontSize: 12.sp)),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8.h),
+                Row(
+                  children: [
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: ColorCode.greyBorder, width: 1)),
+                      child: Text("경기", style: TextStyle(fontSize: 12.sp)),
+                    ),
+                    SizedBox(width: 5.w),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: ColorCode.greyBorder, width: 1)),
+                      child: Text("경남", style: TextStyle(fontSize: 12.sp)),
+                    ),
+                    SizedBox(width: 5.w),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: ColorCode.greyBorder, width: 1)),
+                      child: Text("경북", style: TextStyle(fontSize: 12.sp)),
+                    ),
+                    SizedBox(width: 5.w),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: ColorCode.greyBorder, width: 1)),
+                      child: Text("전남", style: TextStyle(fontSize: 12.sp)),
+                    ),
+                    SizedBox(width: 5.w),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.transparent,
+                          border: Border.all(
+                              color: ColorCode.greyBorder, width: 1)),
+                      child: Text("전북", style: TextStyle(fontSize: 12.sp)),
+                    ),
+                    SizedBox(width: 5.w),
+                  ],
+                ),
+                SizedBox(height: 32.h),
+                Expanded(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text(
+                            "초기화",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            side: const BorderSide(color: ColorCode.greyBorder),
+                            elevation: 0,
+                            padding: EdgeInsets.symmetric(vertical: 13.h),
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(12), // <-- Radius
+                            ),
+                            primary: ColorCode.white,
+                            textStyle: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16.sp,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 8.w),
+                      Expanded(
+                        flex: 5,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text("선택완료"),
+                          style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              padding: EdgeInsets.symmetric(vertical: 13.h),
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(12), // <-- Radius
+                              ),
+                              primary: ColorCode.green50,
+                              textStyle: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 16.sp,
+                              )),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          );
+        });
+  }
+
+
+  String? searchResult;
+  String searchText = '주소, 매장이름 등으로 검색해보세요';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,35 +356,46 @@ class _MainShopListScreenState extends State<MainShopListScreen> {
                   decoration: BoxDecoration(
                       color: ColorCode.grey30,
                       borderRadius: BorderRadius.circular(4)),
-                  child: Row(
-                    children: [
-                      Container(
-                          width: 20.w,
-                          height: 20.w,
-                          child: SvgPicture.asset(IconPath.iconSearch,
-                              fit: BoxFit.fill, color: ColorCode.grey60)),
-                      SizedBox(width: 4.w),
-                      Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              isCollapsed: true,
-                              isDense: true,
-                              hintText: "주소, 매장이름 등으로 검색해보세요"),
+                  child: GestureDetector(
+                    onTap: () async {
+                      final result = await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => MainShopListSearchScreen()));
+                      setState(() {
+                        searchResult = result;
+                        searchText = result;
+                      });
+                    },
+                    child: Row(
+                      children: [
+                        SizedBox(
+                            width: 20.w,
+                            height: 20.w,
+                            child: SvgPicture.asset(IconPath.iconSearch,
+                                fit: BoxFit.fill, color: ColorCode.grey60)),
+                        SizedBox(width: 4.w),
+                        Expanded(
+                          child: Text(searchText,
+                              style: TextStyle(
+                                  color: ColorCode.grey60,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w400)),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 8.w),
-              child: SizedBox(
-                  width: 24.w,
-                  height: 24.w,
-                  child: SvgPicture.asset(IconPath.iconFilter)),
-            )
+            IconButton(
+                onPressed: () {
+                  bottomSheet();
+                },
+                icon: SizedBox(
+                    width: 24.w,
+                    height: 24.w,
+                    child: SvgPicture.asset(IconPath.iconFilter)))
           ],
         ),
       ),
@@ -79,82 +406,167 @@ class _MainShopListScreenState extends State<MainShopListScreen> {
   content(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 16.w, top: 36.h),
-      child: ListView.separated(
-          itemBuilder: (_, index) => Row(
-                children: [
-                  Container(
-                      decoration:
-                          BoxDecoration(borderRadius: BorderRadius.circular(8)),
-                      width: 62.w,
-                      height: 62.w,
-                      child: Image.asset(
-                        ImagePath.shopImage,
-                        fit: BoxFit.fill,
-                      )),
-                  SizedBox(width: 8.w),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text("컴패스 해운대동부센트레빌점",
-                            style: TextStyle(fontSize: 14.sp, height: 1.4.sp)),
-                        SizedBox(height: 2.h),
-                        Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (searchResult != null)
+            searchResult == "우동"
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text.rich(TextSpan(
+                          text: searchResult,
+                          style: TextStyle(
+                              color: ColorCode.green50,
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w700,
+                              height: 1.4.sp),
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: Colors.black,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    top: 3.h,
-                                    bottom: 4.h,
-                                    left: 5.w,
-                                    right: 5.w),
-                                child: Text(
-                                  '2km',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 10.sp),
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 4.w),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: ColorCode.grey30,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    top: 3.h,
-                                    bottom: 4.h,
-                                    left: 5.w,
-                                    right: 5.w),
-                                child: Text(
-                                  '독서실',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 10.sp),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 4.h),
-                        Text("전체좌석 46석",
-                            style: TextStyle(
-                                color: ColorCode.grey60, fontSize: 12.sp)),
-                      ],
-                    ),
+                            TextSpan(
+                                text: ' 검색결과는\n24개 입니다.',
+                                style: TextStyle(color: Colors.black))
+                          ])),
+                      SizedBox(height: 20.h),
+                    ],
                   )
-                ],
-              ),
-          separatorBuilder: (_, index) => SizedBox(height: 14.h),
-          itemCount: 4),
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        '검색결과가 없습니다.\n아래와 같이 검색해보세요.',
+                        style: TextStyle(
+                            color: ColorCode.black,
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w700,
+                            height: 1.4.sp),
+                      ),
+                      SizedBox(height: 20.h),
+                    ],
+                  ),
+          searchResult == "우동"
+              ? Expanded(
+                  child: ListView.separated(
+                      itemBuilder: (_, index) => Row(
+                            children: [
+                              Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8)),
+                                  width: 62.w,
+                                  height: 62.w,
+                                  child: Image.asset(
+                                    ImagePath.shopImage,
+                                    fit: BoxFit.fill,
+                                  )),
+                              SizedBox(width: 8.w),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    Text("컴패스 해운대동부센트레빌점",
+                                        style: TextStyle(
+                                            fontSize: 14.sp, height: 1.4.sp)),
+                                    SizedBox(height: 2.h),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            color: Colors.black,
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.only(
+                                                top: 3.h,
+                                                bottom: 4.h,
+                                                left: 5.w,
+                                                right: 5.w),
+                                            child: Text(
+                                              '2km',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 10.sp),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 4.w),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            color: ColorCode.grey30,
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.only(
+                                                top: 3.h,
+                                                bottom: 4.h,
+                                                left: 5.w,
+                                                right: 5.w),
+                                            child: Text(
+                                              '독서실',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 10.sp),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: 4.h),
+                                    Text("전체좌석 46석",
+                                        style: TextStyle(
+                                            color: ColorCode.grey60,
+                                            fontSize: 12.sp)),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                      separatorBuilder: (_, index) => SizedBox(height: 14.h),
+                      itemCount: 4),
+                )
+              : Expanded(
+                  child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      '· 도로명 + 건물번호',
+                      style: TextStyle(fontSize: 12.sp,height: 1.4.sp),
+                    ),
+                    Text('   예) 컴패스로 1길 3',
+                        style: TextStyle(
+                            fontSize: 12.sp, color: ColorCode.grey60,height: 1.4.sp)),
+                    SizedBox(height: 22.h),
+                    Text(
+                      '· 지역명 + 번지',
+                      style: TextStyle(fontSize: 12.sp,height: 1.4.sp),
+                    ),
+                    Text('   예) 컴패스동 1-11',
+                        style: TextStyle(
+                            fontSize: 12.sp, color: ColorCode.grey60,height: 1.4.sp)),
+                    SizedBox(height: 22.h),
+                    Text(
+                      '· 건물명, 아파트명',
+                      style: TextStyle(fontSize: 12.sp,height: 1.4.sp),
+                    ),
+                    Text('   예) 컴패스타워 101동',
+                        style: TextStyle(
+                            fontSize: 12.sp, color: ColorCode.grey60)),
+                    SizedBox(height: 22.h),
+                    Text(
+                      '· 매장명',
+                      style: TextStyle(fontSize: 12.sp,height: 1.4.sp),
+                    ),
+                    Text('   컴패스 스터디카페',
+                        style: TextStyle(
+                            fontSize: 12.sp, color: ColorCode.grey60,height: 1.4.sp)),
+                    SizedBox(height: 22.h),
+                  ],
+                )),
+        ],
+      ),
     );
   }
 }
