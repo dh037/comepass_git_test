@@ -2,6 +2,7 @@ import 'package:comepass/notifier/forgot/find_pwd_add_info_notifier.dart';
 import 'package:comepass/notifier/forgot/forgot_id_notifier.dart';
 import 'package:comepass/notifier/forgot/forgot_notifier.dart';
 import 'package:comepass/notifier/login_notifier.dart';
+import 'package:comepass/notifier/main/main_home_notifier.dart';
 import 'package:comepass/notifier/register/register_certification_notifier.dart';
 import 'package:comepass/notifier/register/register_consent_notifier.dart';
 import 'package:comepass/notifier/register/register_id_pwd_notifier.dart';
@@ -23,6 +24,7 @@ import '../screen/forgot/find_pwd_add_info_screen.dart';
 import '../screen/forgot/forgot_screen.dart';
 import '../screen/login_screen.dart';
 import '../screen/main/main_screen.dart';
+import '../screen/qr_screen.dart';
 import '../screen/register/sso_register_screen.dart';
 import '../screen/splash_screen.dart';
 
@@ -45,6 +47,8 @@ class RoutePath {
   static const String findPwdAddInfo = "/findPwdAddInfo";
   static const String findIdSuccess = "/findIdSuccess";
   static const String findPwdSuccess = "/findPwdSuccess";
+
+  static const String qrScreen = "/qrScreen";
 
   static Map<String, Widget Function(BuildContext)> routes = {
     splashPage: (context) => const SplashScreen(),
@@ -77,10 +81,15 @@ class RoutePath {
     findPwdAddInfo: (context) => ChangeNotifierProvider(
         create: (_) => FindPwdAddInfoNotifier(),
         child: const FindPwdAddInfoScreen()),
-    mainPage: (context) => ChangeNotifierProvider(
-        create: (_) => BottomNavNotifier(), child: MainScreen()),
+    mainPage: (context) => MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => BottomNavNotifier()),
+          ChangeNotifierProvider(create: (_) => MainHomeNotifier())
+        ],
+        child: MainScreen()),
     findIdSuccess: (context) => const FindIdSuccessScreen(),
-    findPwdSuccess: (context) => const FindPwdSuccessScreen()
+    findPwdSuccess: (context) => const FindPwdSuccessScreen(),
+    qrScreen: (context) => const QrScreen()
   };
 
 // https://stackoverflow.com/questions/59822279/difference-between-ongenerateroute-and-routes-in-flutter

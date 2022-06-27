@@ -30,64 +30,74 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar.customAppBar(title: "LOGIN"),
-        body: SingleChildScrollView(child: content(context)));
+        body: content(context));
   }
 
   Color borderColor = Colors.green;
   Color focusedBorderColor = Colors.greenAccent;
 
   Widget content(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        _loginNotifier.idFocusNode.unfocus();
-        _loginNotifier.pwdFocusNode.unfocus();
-      },
-      child: Center(
-        child: Container(
-          padding: EdgeInsets.only(top: 50.h, left: 24.w, right: 24.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              loginArea(),
-              SizedBox(height: 40.h),
-              snsLoginBtn(),
-              SizedBox(height: 52.h),
-              registerOutlinedBtn(),
-              SizedBox(height: 51.h),
-              findIdAndPwdBtn()
-            ],
-          ),
+    return SingleChildScrollView(
+      child: GestureDetector(
+        onTap: () {
+          _loginNotifier.idFocusNode.unfocus();
+          _loginNotifier.pwdFocusNode.unfocus();
+        },
+        child: Column(
+          children: [
+            Center(
+              child: Container(
+                padding: EdgeInsets.only(top: 50.h, left: 24.w, right: 24.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    loginArea(),
+                    SizedBox(height: 40.h),
+                    snsLoginBtn(),
+                    SizedBox(height: 52.h),
+                    registerOutlinedBtn(),
+                    SizedBox(height: 51.h),
+                    findIdAndPwdBtn()
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
+
   TextEditingController c1 = TextEditingController();
+
   Widget loginArea() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-
         Consumer<LoginNotifier>(
             builder: (BuildContext context, value, Widget? child) =>
                 CustomTextField(
-                    focusNode: _loginNotifier.idFocusNode,
-                    controller: _loginNotifier.idTextFieldController,
-                    borderColor: _loginNotifier.idTextFieldBorderColor,
-                    focusedBorderColorCursorColor: _loginNotifier.idTextFieldFocusBorderColorCursorColor,
-                    hintText: '아이디',
-                    styleHandling: true,
-                    )),
+                  focusNode: _loginNotifier.idFocusNode,
+                  controller: _loginNotifier.idTextFieldController,
+                  borderColor: _loginNotifier.idTextFieldBorderColor,
+                  focusedBorderColorCursorColor:
+                      _loginNotifier.idTextFieldFocusBorderColorCursorColor,
+                  hintText: '아이디',
+                  styleHandling: true,
+                )),
         SizedBox(height: 18.h),
         Consumer<LoginNotifier>(
             builder: (BuildContext context, value, Widget? child) =>
                 CustomTextField(
-                    focusNode: _loginNotifier.pwdFocusNode,
-                    controller: _loginNotifier.pwdTextFieldController,
-                    borderColor: _loginNotifier.pwdTextFieldBorderColor,
-                    focusedBorderColorCursorColor: _loginNotifier.pwdTextFieldFocusBorderColorCursorColor,
-                    errorText: _loginNotifier.errorMessage,
-                    hintText: '비밀번호',
-                    styleHandling: true,)),
+                  focusNode: _loginNotifier.pwdFocusNode,
+                  controller: _loginNotifier.pwdTextFieldController,
+                  borderColor: _loginNotifier.pwdTextFieldBorderColor,
+                  focusedBorderColorCursorColor:
+                      _loginNotifier.pwdTextFieldFocusBorderColorCursorColor,
+                  errorText: _loginNotifier.errorMessage,
+                  hintText: '비밀번호',
+                  styleHandling: true,
+                )),
         SizedBox(height: 16.h),
         CustomButton.stretchTextBtnGreen50White(
             text: '로그인',
@@ -119,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: const Color(0xffFEE500)))),
             SizedBox(width: 12.w),
             GestureDetector(
-              onTap:() => _loginNotifier.naverLoginBtn(context),
+              onTap: () => _loginNotifier.naverLoginBtn(context),
               child: Container(
                   padding:
                       EdgeInsets.symmetric(vertical: 14.w, horizontal: 14.w),

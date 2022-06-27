@@ -7,8 +7,8 @@ import 'package:comepass/screen/main/main_shop_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../data/model/ticket.dart';
 import '../../notifier/main/main_shop_list_notifier.dart';
-
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key? key}) : super(key: key);
@@ -19,9 +19,8 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   late BottomNavNotifier _bottomNavNotifier;
-  final controller = PageController(viewportFraction: 0.9);
 
-  late List<Ticket> ticketList;
+  final controller = PageController(viewportFraction: 0.9);
 
   @override
   void initState() {
@@ -32,13 +31,12 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: const CustomFloatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: CustomBottomNav(
-        bottomNavNotifier: _bottomNavNotifier,
-      ),
-      body: content(context),
-    );
+        floatingActionButton: const CustomFloatingActionButton(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: CustomBottomNav(
+          bottomNavNotifier: _bottomNavNotifier,
+        ),
+        body: content(context));
   }
 
   content(BuildContext context) {
@@ -46,12 +44,7 @@ class _MainScreenState extends State<MainScreen> {
         builder: (BuildContext context, value, Widget? child) => IndexedStack(
               index: _bottomNavNotifier.bottomNavCurrentIndex,
               children: [
-                Navigator(
-                    key: _bottomNavNotifier.home,
-                    onGenerateRoute: (routeSetting) => MaterialPageRoute(
-                        builder: (context) => ChangeNotifierProvider(
-                            create: (_) => MainHomeNotifier(),
-                            child: const MainHomeScreen()))),
+                const MainHomeScreen(),
                 const MainShopListScreen(),
                 const SizedBox.shrink(),
                 Container(child: Center(child: Text("3"))),
@@ -59,6 +52,4 @@ class _MainScreenState extends State<MainScreen> {
               ],
             ));
   }
-
 }
-

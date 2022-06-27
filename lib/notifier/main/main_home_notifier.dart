@@ -1,8 +1,9 @@
-
-import 'package:comepass/screen/main/main_screen.dart';
+import 'package:comepass/data/model/ticket.dart';
 import 'package:flutter/material.dart';
 
 class MainHomeNotifier extends ChangeNotifier {
+
+  late Future value;
 
   int ticketBannerDotIndicatorIndex = 0;
   int eventBannerIndex = 0;
@@ -21,21 +22,25 @@ class MainHomeNotifier extends ChangeNotifier {
     eventBannerIndex = value;
     notifyListeners();
   }
+
+  getData () async {
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    Map<String, dynamic> ticketJsonData1 = {"shop_name": "캠퍼스 수영민락점"};
+    Map<String, dynamic> ticketJsonData2 = {"shop_name": "캠퍼스 해운대점"};
+    Map<String, dynamic> ticketJsonData3 = {"shop_name": "캠퍼스 기장점"};
+
+    ticketList = [
+      Ticket.fromJson(ticketJsonData1),
+      Ticket.fromJson(ticketJsonData2),
+      Ticket.fromJson(ticketJsonData3)
+    ];
+
+
+
+    return ticketList;
+  }
 }
 
 
-class Ticket {
-  String? shopName;
-
-  Ticket({this.shopName});
-
-  Ticket.fromJson(Map<String, dynamic> json) {
-    shopName = json['shop_name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['shop_name'] = this.shopName;
-    return data;
-  }
-}

@@ -1,3 +1,4 @@
+import 'package:comepass/constants/routes_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,7 +12,9 @@ class CustomFloatingActionButton extends StatelessWidget {
       width: 48.w,
       margin: EdgeInsets.only(top: 8.h),
       child: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, RoutePath.qrScreen);
+        },
         child: Container(
           height: 48.w,
           width: 48.w,

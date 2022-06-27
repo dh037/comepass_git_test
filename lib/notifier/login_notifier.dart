@@ -14,6 +14,8 @@ import 'forgot/forgot_notifier.dart';
 class LoginNotifier extends ChangeNotifier {
   RestApi restApi = RestApi();
 
+  bool isLoading = false;
+
   final idTextFieldController = TextEditingController();
   final pwdTextFieldController = TextEditingController();
 
@@ -41,15 +43,13 @@ class LoginNotifier extends ChangeNotifier {
       errorMessage = '아이디에 공백은 포함할 수 없습니다.';
       idTextFieldController.text = "";
       notifyListeners();
-    }
-    else if (!Regex.idRule().hasMatch(idTextFieldController.text)) {
+    } else if (!Regex.idRule().hasMatch(idTextFieldController.text)) {
       idErrorStyle();
       pwdNormalStyle();
       errorMessage = '아이디는 영문+숫자조합 5자 이상 12자 이하입니다.';
       idTextFieldController.text = "";
       notifyListeners();
-    }
-    else if (pwdTextFieldController.text.isEmpty) {
+    } else if (pwdTextFieldController.text.isEmpty) {
       idNormalStyle();
       pwdErrorStyle();
       errorMessage = '비밀번호를 입력하세요';
@@ -60,22 +60,26 @@ class LoginNotifier extends ChangeNotifier {
       errorMessage = '비밀번호는 공백은 포함할 수 없습니다.';
       pwdTextFieldController.text = "";
       notifyListeners();
-     }
-    else if (!Regex.passwordRule().hasMatch(pwdTextFieldController.text)) {
+     } else if (!Regex.passwordRule().hasMatch(pwdTextFieldController.text)) {
       idNormalStyle();
       pwdErrorStyle();
       errorMessage = '비밀번호는 영문+숫자+특수문자 조합 8자 이상 20자 이하입니다.';
       pwdTextFieldController.text = "";
       notifyListeners();
-    }
-    else {
+    } else {
       idNormalStyle();
       pwdNormalStyle();
       errorMessage = null;
       notifyListeners();
 
+      isLoading = true;
+      notifyListeners();
+
       Response response = await restApi.comepassLogin(
           id: idTextFieldController.text, pwd: pwdTextFieldController.text);
+
+      isLoading = false;
+      notifyListeners();
 
       var httpCode = response.statusCode;
       var httpBody = jsonDecode(response.body);
@@ -101,6 +105,8 @@ class LoginNotifier extends ChangeNotifier {
           context, RoutePath.mainPage, (route) => false);
     }
   }
+
+
 
   void kakaoLoginBtn(BuildContext context) async {
     try {
@@ -166,8 +172,6 @@ class LoginNotifier extends ChangeNotifier {
 
       Navigator.pushNamed(context, RoutePath.ssoRegisterPage,arguments: args);
     }
-
-
   }
 
   void registerBtn(BuildContext context) {

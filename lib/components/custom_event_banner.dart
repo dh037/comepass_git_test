@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../constants/color_code.dart';
-import '../notifier/main/main_home_notifier.dart';
+import '../data/model/ticket.dart';
 
 class CustomTicketBanner extends StatelessWidget {
   Ticket ticket;
